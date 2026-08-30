@@ -20,8 +20,17 @@
   var lang = store('ka-lang');
   if (lang !== 'tr' && lang !== 'en') lang = 'tr';   // varsayilan Turkce
 
+  /* Anahtar sozlukte var mi? Yoksa HTML'deki hazir metne dokunmayiz --
+     boylece eski bir i18n.js onbellekten gelse bile sayfada anahtar adi gorunmez. */
+  function hasKey(key) {
+    var d = window.I18N[lang];
+    if (d && d[key] !== undefined) return true;
+    return !!(window.I18N.tr && window.I18N.tr[key] !== undefined);
+  }
+
   window.APP = {
     get lang() { return lang; },
+    has: hasKey,
     t: function (key) {
       var d = window.I18N[lang];
       if (d && d[key] !== undefined) return d[key];
@@ -34,11 +43,15 @@
     document.documentElement.lang = lang;
 
     $$('[data-i18n]').forEach(function (el) {
-      var v = window.APP.t(el.dataset.i18n);
+      var k = el.dataset.i18n;
+      if (!hasKey(k)) return;
+      var v = window.APP.t(k);
       if (typeof v === 'string') el.textContent = v;
     });
     $$('[data-i18n-html]').forEach(function (el) {
-      var v = window.APP.t(el.dataset.i18nHtml);
+      var k = el.dataset.i18nHtml;
+      if (!hasKey(k)) return;
+      var v = window.APP.t(k);
       if (typeof v === 'string') el.innerHTML = v;
     });
 
