@@ -1,4 +1,4 @@
-# Kutay Aydemir — WebSite: https://kutayzku.github.io
+# Kutay Aydemir — Kişisel Site
 
 Junior Game Developer & Bilgisayar Mühendisi kişisel portföy sitesi.
 Ayrıca **"Bilgisayar Nasıl Düşünür?"** adında, bilgisayar mantığını sıfırdan anlatan
@@ -16,7 +16,7 @@ tamamen interaktif bir laboratuvar bölümü içerir.
 | **Hakkımda** | CV özeti + hızlı bilgi kartları |
 | **Laboratuvar** | 5 interaktif modül (aşağıda) |
 | **Yetenekler** | 4 kategoride teknik yetkinlikler |
-| **Projeler** | 6 proje kartı |
+| **Projeler** | 7 proje kartı |
 | **Yolculuk** | Eğitim + staj zaman çizelgesi |
 | **İletişim** | E-posta (yaz / kopyala), GitHub, LinkedIn, itch.io, CV indirme |
 

@@ -174,6 +174,11 @@ tr: {
   'proj5.d':'Selenium kullanarak ders seçim sürecini otomatikleştiren bir web botu geliştirdim. Tekrarlayan bir işi koda devretmenin ne kadar tatmin edici olduğunu burada öğrendim.',
   'proj6.t':'E-Ticaret Web Uygulaması',
   'proj6.d':'İnnova stajında bir ekip arkadaşımla Amazon benzeri bir e-ticaret uygulaması geliştirdim. Satıcı ve müşteri için ayrı sayfalar kurgulayıp ürün satış ve satın alma akışlarını uyguladım.',
+  'proj7.t':'Müzik — İlk Ve SONg',
+  'proj7.d':'Kendi yazdığım sözleri yapay zekâ ile şarkıya dönüştürüyorum. Parçaların Spotify, YouTube Music ve diğer platformlardaki bağlantılarını tek yerde topladığım küçük bir site.',
+  'proj7.link':'Şarkıları dinle',
+  'proj.lyrics':'Söz Yazarlığı',
+  'proj.ai':'Yapay Zekâ',
 
   'journey.title':'Yolculuk',
   'journey.sub':'Deneyim ve eğitim — nereden başladım, şu an neredeyim.',
@@ -376,6 +381,11 @@ en: {
   'proj5.d':'Built a web bot with Selenium that automates the course registration process. This is where I learned how satisfying it is to hand a repetitive job over to code.',
   'proj6.t':'E-commerce Web Application',
   'proj6.d':'During my İnnova internship I built an Amazon-like e-commerce application with a teammate. We designed separate pages for sellers and customers and implemented the selling and purchasing flows.',
+  'proj7.t':'Music — İlk Ve SONg',
+  'proj7.d':'I turn lyrics I write myself into songs with AI. A small site where I gather the Spotify, YouTube Music and other platform links for the tracks in one place.',
+  'proj7.link':'Listen to the tracks',
+  'proj.lyrics':'Songwriting',
+  'proj.ai':'AI',
 
   'journey.title':'Journey',
   'journey.sub':'Experience and education — where I started, where I am now.',
