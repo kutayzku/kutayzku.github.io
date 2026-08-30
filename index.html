@@ -1,105 +1,546 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kutay Aydemir</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --text-color: #f1f5f9;
-            --accent-color: #38bdf8;
-            --sub-text: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Kutay Aydemir — Junior Game Developer &amp; Bilgisayar Mühendisi</title>
+<meta name="description" content="Kutay Aydemir — TED Üniversitesi Bilgisayar Mühendisi, Junior Game Developer. Unity, Java, C++, Python. Ve bilgisayarın nasıl düşündüğünü anlatan interaktif bir laboratuvar.">
+<meta name="author" content="Kutay Aydemir">
+<meta name="theme-color" content="#08070E">
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kutay Aydemir — Junior Game Developer">
+<meta property="og:description" content="Oyun geliştirici portföyü ve bilgisayarın nasıl düşündüğünü anlatan interaktif laboratuvar.">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:url" content="https://kutayzku.github.io/">
+<meta name="twitter:card" content="summary_large_image">
 
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 40px;
-            animation: fadeIn 1.5s ease;
-        }
+<link rel="icon" type="image/png" href="assets/favicon-src.png">
+<link rel="apple-touch-icon" href="assets/favicon-src.png">
 
-        h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -1px; }
-        h1 span { color: var(--accent-color); }
-        .title { font-size: 1.25rem; color: var(--sub-text); margin-bottom: 30px; }
-        .divider { width: 50px; height: 4px; background-color: var(--accent-color); margin: 0 auto 30px auto; border-radius: 2px; }
-        
-        .about-text {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-        }
-
-        .email {
-            font-size: 1rem;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-        }
-
-        .links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .btn {
-            text-decoration: none;
-            color: var(--text-color);
-            border: 1px solid var(--sub-text);
-            padding: 12px 30px;
-            border-radius: 50px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .btn:hover {
-            border-color: var(--accent-color);
-            background-color: var(--accent-color);
-            color: #000;
-            transform: translateY(-3px);
-        }
-
-        footer { margin-top: 50px; font-size: 0.8rem; color: var(--sub-text); opacity: 0.6; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) { h1 { font-size: 2.2rem; } }
-    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Kutay <span>Aydemir</span></h1>
-        <div class="title">Bilgisayar Mühendisi</div>
-        <div class="divider"></div>
+<div class="bg-layer" aria-hidden="true"><canvas id="bgCanvas"></canvas></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-        <p class="about-text">
-            Merhaba, ben Kutay. <strong>TED Üniversitesi</strong> Bilgisayar Mühendisliği mezunuyum. 
-            Modern web teknolojileri ve yazılım geliştirme üzerine odaklanıyorum.
-        </p>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
 
-        <p class="about-text email">
-            E-posta: <a href="mailto:kutayzku@gmail.com" style="color:var(--accent-color); text-decoration:none;">kutayzku@gmail.com</a>
-        </p>
+<a href="#about" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 
-        <div class="links">
-            <a href="https://github.com/kutayzku" target="_blank" class="btn">GitHub</a>
-            <a href="https://www.linkedin.com/in/kutay-aydemir-5b3b19219/" target="_blank" class="btn">LinkedIn</a>
-        </div>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand" aria-label="Kutay Aydemir">
+      <img src="assets/logo-dark.png" alt="" class="nav-logo" data-logo width="34" height="34">
+      <span class="nav-name">KUTAY<span class="nav-name-dim">AYDEMİR</span></span>
+    </a>
 
-        <footer>
-            &copy; 2025 Kutay Aydemir
-        </footer>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="#about"    data-i18n="nav.about">Hakkımda</a>
+      <a href="#lab"      data-i18n="nav.lab">Laboratuvar</a>
+      <a href="#skills"   data-i18n="nav.skills">Yetenekler</a>
+      <a href="#projects" data-i18n="nav.projects">Projeler</a>
+      <a href="#journey"  data-i18n="nav.journey">Yolculuk</a>
+      <a href="#contact"  data-i18n="nav.contact">İletişim</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn lang-btn" id="langBtn" aria-label="Dil / Language" title="Türkçe / English">
+        <span id="langLabel">EN</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir" title="Tema">
+        <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+      </button>
+      <button class="burger" id="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow reveal"><span class="dot"></span><span data-i18n="hero.eyebrow">Merhaba, ben</span></p>
+      <h1 class="hero-title reveal">Kutay<br><span class="grad">Aydemir</span></h1>
+      <p class="hero-role reveal"><span class="type" id="typeTarget"></span><span class="caret" aria-hidden="true"></span></p>
+      <p class="hero-desc reveal" data-i18n="hero.desc">TED Üniversitesi Bilgisayar Mühendisliği mezunuyum. Unity ile oyunlar geliştiriyor, kodun elektriğe kadar inen yolculuğunu anlatmayı seviyorum. Şimdi hedefim: gameplay programlama.</p>
+
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary"><span data-i18n="hero.cta1">Projelerimi Gör</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#lab" class="btn btn-ghost"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L5.5 18a2.4 2.4 0 0 0 2.1 3.5h8.8A2.4 2.4 0 0 0 18.5 18L14 9.2V3"/></svg><span data-i18n="hero.cta2">Bilgisayar Nasıl Düşünür?</span></a>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="stat"><b data-count="6">0</b><span data-i18n="hero.stat1">Proje</span></div>
+        <div class="stat"><b data-count="2">0</b><span data-i18n="hero.stat2">Staj Deneyimi</span></div>
+        <div class="stat"><b data-count="5" data-suffix="+">0</b><span data-i18n="hero.stat3">Programlama Dili</span></div>
+      </div>
     </div>
 
+    <div class="hero-art reveal">
+      <div class="emblem">
+        <div class="emblem-ring r1" aria-hidden="true"></div>
+        <div class="emblem-ring r2" aria-hidden="true"></div>
+        <div class="emblem-ring r3" aria-hidden="true"></div>
+        <img src="assets/logo-dark.png" alt="Kutay Aydemir logosu" class="emblem-img" id="emblemImg" data-logo width="700" height="700">
+      </div>
+      <div class="bit-strip" id="bitStrip" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-cue" aria-label="Aşağı kaydır"><span></span></a>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 data-i18n="about.title">Hakkımda</h2>
+      <p class="sec-sub" data-i18n="about.sub">Kod yazmayı sevmemin sebebi basit: hayal ettiğin şeyi çalışır hâle getirmenin en doğrudan yolu.</p>
+    </header>
+
+    <div class="about-grid">
+      <div class="about-main card reveal">
+        <p data-i18n-html="about.p1">TED Üniversitesi <b>Bilgisayar Mühendisliği</b> mezunuyum. Üniversite eğitimim sırasında oyun programlama dersi aldım ve <b>Unity</b> ile oynanabilir bir oyun projesi geliştirdim. Java, C++, Python, nesne yönelimli programlama ve yazılım geliştirme temellerine sahibim.</p>
+        <p data-i18n-html="about.p2">İnnova ve Kobizon'da staj deneyimi edindim; ayrıca web, veritabanı ve yapay zekâ tabanlı projeler geliştirdim. Oyun geliştirme ve <b>gameplay programlama</b> alanında kendimi geliştirerek Junior Game Developer olarak profesyonel kariyerime başlamayı hedefliyorum.</p>
+        <p class="about-quote" data-i18n="about.p3">Bir oyundaki her zıplama, her çarpışma, her düşman kararı… hepsi aslında saniyede milyarlarca kez tekrarlanan tek bir basit sorudan doğuyor: açık mı, kapalı mı? Bu sitenin laboratuvar bölümünü, o soruyu birlikte cevaplayalım diye yaptım.</p>
+      </div>
+
+      <div class="about-facts reveal">
+        <div class="fact card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><span data-i18n="fact.loc">Konum</span><b data-i18n="fact.loc.v">Ankara, Türkiye</b></div>
+        </div>
+        <div class="fact card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 4 2 10l10 6 10-6z"/><path d="M6 12.4V17c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.6"/></svg>
+          <div><span data-i18n="fact.edu">Eğitim</span><b data-i18n="fact.edu.v">TED Üniversitesi — Bilgisayar Müh.</b></div>
+        </div>
+        <div class="fact card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.8 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.8-3.8-9S9.5 5.6 12 3z"/></svg>
+          <div><span data-i18n="fact.lang">Diller</span><b data-i18n="fact.lang.v">Türkçe (ana dil) · İngilizce (ileri)</b></div>
+        </div>
+        <div class="fact card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".9"/></svg>
+          <div><span data-i18n="fact.focus">Odak</span><b data-i18n="fact.focus.v">Oyun geliştirme · Gameplay programlama</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAB ============ -->
+<section class="section section-lab" id="lab">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 data-i18n="lab.title">Bilgisayar Nasıl Düşünür?</h2>
+      <p class="sec-sub" data-i18n="lab.sub">Bilgisayar aslında hiçbir şey "bilmez". Tek yaptığı, elektriğin var mı yok mu olduğunu saymak. Aşağıdaki beş durakta, o basit sorudan senin oynadığın oyuna kadar giden yolu birlikte çıkalım. Her şey elle oynanabilir — dokun, değiştir, kır.</p>
+    </header>
+
+    <!-- LAB 01 : BITS -->
+    <article class="lab card reveal">
+      <div class="lab-head">
+        <span class="lab-num">01</span>
+        <div>
+          <h3 data-i18n="lab1.title">Her şey tek bir anahtardan ibaret</h3>
+          <p data-i18n-html="lab1.sub">Bir transistör ya akım geçirir (1) ya geçirmez (0). Yan yana sekiz tanesini koyduğunda bir <em>bayt</em> olur ve 0–255 arası her sayıyı yazabilirsin. Anahtarlara tıkla, bilgisayarın nasıl saydığını gör.</p>
+        </div>
+      </div>
+
+      <div class="bits-row" id="bitsRow" role="group" aria-label="Bit anahtarları"></div>
+
+      <div class="bits-out">
+        <div class="out"><span data-i18n="lab1.dec">Onluk (decimal)</span><b id="outDec">0</b></div>
+        <div class="out"><span data-i18n="lab1.hex">Onaltılık (hex)</span><b id="outHex">0x00</b></div>
+        <div class="out"><span data-i18n="lab1.bin">İkilik (binary)</span><b id="outBin" class="mono">00000000</b></div>
+        <div class="out"><span data-i18n="lab1.chr">Karakter (ASCII)</span><b id="outChr">—</b></div>
+      </div>
+
+      <div class="lab-actions">
+        <button class="chip-btn" id="bitRand" data-i18n="lab1.rand">Rastgele</button>
+        <button class="chip-btn" id="bitClr" data-i18n="lab1.clear">Sıfırla</button>
+        <button class="chip-btn" id="bitK" data-i18n="lab1.k">&quot;K&quot; harfini yaz</button>
+      </div>
+
+      <div class="lab-sub">
+        <label class="fld">
+          <span data-i18n="lab1.txt">Adını yaz — bilgisayarın gördüğü hâlini gör</span>
+          <input type="text" id="txtIn" value="Kutay" maxlength="18" spellcheck="false" autocomplete="off">
+        </label>
+        <div class="txt-out mono" id="txtOut"></div>
+      </div>
+    </article>
+
+    <!-- LAB 02 : GATES -->
+    <article class="lab card reveal">
+      <div class="lab-head">
+        <span class="lab-num">02</span>
+        <div>
+          <h3 data-i18n="lab2.title">0 ve 1'den "karar" doğuyor</h3>
+          <p data-i18n-html="lab2.sub">Anahtarları belirli şekillerde birleştirince <em>mantık kapıları</em> elde edersin. Bir oyundaki "canı bitti <b>VE</b> ekstra can yoksa → oyun bitti" kararı tam olarak budur. Kapıyı seç, girişleri çevir.</p>
+        </div>
+      </div>
+
+      <div class="gate-picker" id="gatePicker" role="tablist" aria-label="Mantık kapısı seç"></div>
+
+      <div class="gate-stage">
+        <div class="gate-inputs">
+          <button class="switch" id="inA" aria-pressed="false"><i>A</i><span class="sw"><span></span></span><b>0</b></button>
+          <button class="switch" id="inB" aria-pressed="false"><i>B</i><span class="sw"><span></span></span><b>0</b></button>
+        </div>
+
+        <svg class="gate-svg" id="gateSvg" viewBox="0 0 320 160" aria-hidden="true">
+          <path class="wire" id="wA" d="M10 48 H96"/>
+          <path class="wire" id="wB" d="M10 112 H96"/>
+          <g id="gateShape"></g>
+          <path class="wire" id="wOut" d="M228 80 H306"/>
+          <circle class="node" id="nA" cx="10" cy="48" r="5"/>
+          <circle class="node" id="nB" cx="10" cy="112" r="5"/>
+        </svg>
+
+        <div class="gate-output">
+          <span data-i18n="lab2.out">ÇIKIŞ</span>
+          <div class="led" id="gateLed"><b id="gateVal">0</b></div>
+        </div>
+      </div>
+
+      <div class="gate-bottom">
+        <p class="gate-explain" id="gateExplain"></p>
+        <table class="truth" id="truthTable"><caption data-i18n="lab2.truth">Doğruluk tablosu</caption><tbody></tbody></table>
+      </div>
+    </article>
+
+    <!-- LAB 03 : ADDER -->
+    <article class="lab card reveal">
+      <div class="lab-head">
+        <span class="lab-num">03</span>
+        <div>
+          <h3 data-i18n="lab3.title">İki kapıdan bir toplama makinesi</h3>
+          <p data-i18n-html="lab3.sub">Bilgisayar toplamayı "bilmez" — sadece iki kapı kullanır. XOR basamağı verir, AND eldeyi verir. İkisi birleşince <b>1 + 1 = 10</b> olur. İşlemcinin içindeki ALU, bunun milyonlarcasıdır.</p>
+        </div>
+      </div>
+
+      <div class="adder">
+        <div class="adder-inputs">
+          <button class="switch" id="adA" aria-pressed="false"><i>A</i><span class="sw"><span></span></span><b>0</b></button>
+          <button class="switch" id="adB" aria-pressed="false"><i>B</i><span class="sw"><span></span></span><b>0</b></button>
+        </div>
+        <div class="adder-mid">
+          <div class="adder-gate" id="agXor"><span>XOR</span><small data-i18n="lab3.sum">TOPLAM</small></div>
+          <div class="adder-gate" id="agAnd"><span>AND</span><small data-i18n="lab3.carry">ELDE</small></div>
+        </div>
+        <div class="adder-result">
+          <div class="sum-eq mono" id="sumEq">0 + 0 = 0</div>
+          <div class="sum-bits">
+            <div class="sbit" id="sCarry"><b>0</b><span data-i18n="lab3.carry">ELDE</span></div>
+            <div class="sbit" id="sSum"><b>0</b><span data-i18n="lab3.sum">TOPLAM</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- LAB 04 : CPU -->
+    <article class="lab card reveal">
+      <div class="lab-head">
+        <span class="lab-num">04</span>
+        <div>
+          <h3 data-i18n="lab4.title">İşlemcinin sonsuz döngüsü</h3>
+          <p data-i18n-html="lab4.sub">Bir CPU hayatı boyunca üç şey yapar: <b>getir → çöz → çalıştır</b>. Saniyede milyarlarca kez. Aşağıda çalışan gerçek bir mini işlemci var; <em>Adım</em>'a bas ve komutların içeriden nasıl aktığını izle.</p>
+        </div>
+      </div>
+
+      <div class="cpu">
+        <div class="cpu-mem">
+          <h4 data-i18n="lab4.mem">BELLEK / PROGRAM</h4>
+          <ol class="prog" id="progList"></ol>
+        </div>
+
+        <div class="cpu-core">
+          <div class="stages" id="stages">
+            <div class="stage" data-s="0"><b>1</b><span data-i18n="lab4.s1">GETİR</span><small>fetch</small></div>
+            <div class="stage" data-s="1"><b>2</b><span data-i18n="lab4.s2">ÇÖZ</span><small>decode</small></div>
+            <div class="stage" data-s="2"><b>3</b><span data-i18n="lab4.s3">ÇALIŞTIR</span><small>execute</small></div>
+          </div>
+
+          <div class="regs">
+            <div class="reg"><span>PC</span><b id="rPC">0</b><small data-i18n="lab4.pc">sıradaki komut</small></div>
+            <div class="reg"><span>IR</span><b id="rIR">—</b><small data-i18n="lab4.ir">okunan komut</small></div>
+            <div class="reg reg-acc"><span>ACC</span><b id="rACC">0</b><small data-i18n="lab4.acc">hesap kaydı</small></div>
+          </div>
+
+          <div class="alu" id="alu"><span data-i18n="lab4.alu">ALU — Aritmetik / Mantık Birimi</span><b id="aluOp">—</b></div>
+
+          <div class="cpu-btns">
+            <button class="chip-btn primary" id="cpuStep" data-i18n="lab4.step">Adım</button>
+            <button class="chip-btn" id="cpuRun" data-i18n="lab4.run">Çalıştır</button>
+            <button class="chip-btn" id="cpuReset" data-i18n="lab4.reset">Sıfırla</button>
+          </div>
+        </div>
+
+        <div class="cpu-log">
+          <h4 data-i18n="lab4.log">İŞLEMCİNİN İÇ SESİ</h4>
+          <ul id="cpuLog"></ul>
+          <div class="cpu-screen"><span data-i18n="lab4.screen">EKRAN</span><b id="cpuOut">—</b></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- LAB 05 : LAYERS -->
+    <article class="lab card reveal">
+      <div class="lab-head">
+        <span class="lab-num">05</span>
+        <div>
+          <h3 data-i18n="lab5.title">Senin kodundan elektriğe</h3>
+          <p data-i18n="lab5.sub">Yazdığın tek bir satır, aşağı doğru sekiz katman iner ve en altta geriye sadece elektrik kalır. Her katmana tıkla — altındakinin onun için ne yaptığını gör.</p>
+        </div>
+      </div>
+
+      <div class="layers">
+        <div class="layer-stack" id="layerStack"></div>
+        <aside class="layer-detail card" id="layerDetail"></aside>
+      </div>
+
+      <p class="lab-foot" data-i18n="lab5.foot">İşte "bilgisayar mantığı" dediğimiz şey bu: her katman, bir altındakine güvenerek daha zor bir problemi çözüyor. Bir oyun geliştiricisi olarak benim işim en üstteki iki katmanda — ama aşağıda ne olduğunu bilmek, daha hızlı ve daha akıllı kod yazdırıyor.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 data-i18n="skills.title">Teknik Yetkinlikler</h2>
+      <p class="sec-sub" data-i18n="skills.sub">Okulda öğrendiklerim, stajlarda uyguladıklarım ve gece geç saatte merakımdan kurcaladıklarım.</p>
+    </header>
+
+    <div class="skill-grid">
+      <div class="skill card reveal">
+        <div class="skill-ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5h-3M5 8v3M16.4 9.2h.01M18.9 11.2h.01"/><rect x="2" y="6" width="20" height="12" rx="5"/></svg></div>
+        <h3 data-i18n="skills.c1">Oyun Geliştirme</h3>
+        <p data-i18n="skills.c1d">Ana odağım. Unity ile oynanabilir bir proje geliştirdim; gameplay mekanikleri ve iteratif geliştirme üzerine çalışıyorum.</p>
+        <div class="chips"><span>Unity</span><span>C#</span><span data-i18n="skills.gp">Oyun Programlama</span><span data-i18n="skills.gl">Gameplay Mantığı</span></div>
+      </div>
+
+      <div class="skill card reveal">
+        <div class="skill-ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17 3.5 12 8 7M16 7l4.5 5-4.5 5M13.8 4.5 10.2 19.5"/></svg></div>
+        <h3 data-i18n="skills.c2">Programlama</h3>
+        <p data-i18n="skills.c2d">Nesne yönelimli programlama temelli. Java ile büyük ödevler, C++ ile algoritma, Python ile hızlı prototipleme.</p>
+        <div class="chips"><span>Java</span><span>C++</span><span>Python</span><span>OOP</span></div>
+      </div>
+
+      <div class="skill card reveal">
+        <div class="skill-ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3.2"/><path d="M4 6v12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2V6M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"/></svg></div>
+        <h3 data-i18n="skills.c3">Web / Backend / Veri</h3>
+        <p data-i18n="skills.c3d">Staj ve okul projelerinde uçtan uca uygulamalar: arayüz, servis katmanı ve veritabanı.</p>
+        <div class="chips"><span>HTML/CSS</span><span>Spring Boot</span><span>SQL</span><span>FastAPI</span><span>Selenium</span></div>
+      </div>
+
+      <div class="skill card reveal">
+        <div class="skill-ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4 3.4 3.4 0 0 0-1 6.6A3.6 3.6 0 0 0 12 21a3.6 3.6 0 0 0 5-7.4A3.4 3.4 0 0 0 16 7a4 4 0 0 0-4-4z"/><path d="M12 3v18"/></svg></div>
+        <h3 data-i18n="skills.c4">Temel Kavramlar</h3>
+        <p data-i18n="skills.c4d">Araçlar değişir, bunlar kalır. Bir problemi parçalara ayırıp çözülebilir hâle getirmeyi seviyorum.</p>
+        <div class="chips"><span data-i18n="skills.k1">Algoritmik Düşünme</span><span data-i18n="skills.k2">Problem Çözme</span><span data-i18n="skills.k3">Veri Yapıları</span><span data-i18n="skills.k4">Hata Ayıklama</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2 data-i18n="projects.title">Projeler</h2>
+      <p class="sec-sub" data-i18n="projects.sub">Her biri bana farklı bir şey öğretti — birinden oyun döngüsünü, birinden veritabanını, birinden ekip içinde çalışmayı.</p>
+    </header>
+
+    <div class="proj-grid">
+      <article class="proj card feat reveal">
+        <div class="proj-tag" data-i18n="proj.featured">ÖNE ÇIKAN</div>
+        <div class="proj-ico">🎮</div>
+        <h3 data-i18n="proj1.t">Unity Oyun Projesi</h3>
+        <p data-i18n="proj1.d">Oyun programlama dersi kapsamında Unity ile oynanabilir bir oyun geliştirdim. Derste öğrendiğim oyun geliştirme yaklaşımını, nesne yönelimli programlama bilgisini ve iteratif geliştirme sürecini uyguladım; kod entegrasyonu ve hata ayıklama pratiği kazandım.</p>
+        <div class="chips"><span>Unity</span><span>C#</span><span>OOP</span></div>
+      </article>
+
+      <article class="proj card feat reveal">
+        <div class="proj-tag" data-i18n="proj.grad">BİTİRME PROJESİ</div>
+        <div class="proj-ico">🏛️</div>
+        <h3 data-i18n="proj2.t">AI Museum Guide</h3>
+        <p data-i18n="proj2.d">İşbirlikçi bir ekip içinde yapay zekâ destekli müze asistanı geliştirdim. Ziyaretçinin sorusunu anlayıp eser hakkında bağlamlı cevap üreten bir servis kurguladık.</p>
+        <div class="chips"><span>Python</span><span>FastAPI</span><span data-i18n="proj.team">Ekip Çalışması</span></div>
+        <a class="proj-link" href="https://ieeexplore.ieee.org/document/11418510/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1.6 1.6 0 0 1-1.6 1.6H5.6A1.6 1.6 0 0 1 4 19V8.2A1.6 1.6 0 0 1 5.6 6.6H10"/></svg>
+          <span data-i18n="proj2.link">IEEE Xplore'da yayınlandı</span>
+        </a>
+      </article>
+
+      <article class="proj card reveal">
+        <div class="proj-ico">🎲</div>
+        <h3 data-i18n="proj3.t">Monopoly Oyunu</h3>
+        <p data-i18n="proj3.d">Nesne yönelimli programlama prensipleriyle Java tabanlı bir Monopoly oyunu geliştirdim. Oyuncu, kutu, kart ve tur mantığını ayrı sınıflara ayırarak kurdum.</p>
+        <div class="chips"><span>Java</span><span>OOP</span></div>
+      </article>
+
+      <article class="proj card reveal">
+        <div class="proj-ico">🕹️</div>
+        <h3 data-i18n="proj4.t">Steam Benzeri Uygulama</h3>
+        <p data-i18n="proj4.d">SQL veritabanı entegrasyonuna sahip, oyun kütüphanesi ve mağaza akışını taklit eden bir uygulama geliştirdim.</p>
+        <div class="chips"><span>SQL</span><span data-i18n="proj.db">Veritabanı Tasarımı</span></div>
+      </article>
+
+      <article class="proj card reveal">
+        <div class="proj-ico">🤖</div>
+        <h3 data-i18n="proj5.t">Otomatik Ders Seçim Botu</h3>
+        <p data-i18n="proj5.d">Selenium kullanarak ders seçim sürecini otomatikleştiren bir web botu geliştirdim. Tekrarlayan bir işi koda devretmenin ne kadar tatmin edici olduğunu burada öğrendim.</p>
+        <div class="chips"><span>Selenium</span><span data-i18n="proj.auto">Otomasyon</span></div>
+      </article>
+
+      <article class="proj card reveal">
+        <div class="proj-ico">🛒</div>
+        <h3 data-i18n="proj6.t">E-Ticaret Web Uygulaması</h3>
+        <p data-i18n="proj6.d">İnnova stajında bir ekip arkadaşımla Amazon benzeri bir e-ticaret uygulaması geliştirdim. Satıcı ve müşteri için ayrı sayfalar kurgulayıp ürün satış ve satın alma akışlarını uyguladım.</p>
+        <div class="chips"><span>Selenium</span><span data-i18n="proj.db2">Veritabanı</span><span data-i18n="proj.intern">Staj</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="section" id="journey">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <h2 data-i18n="journey.title">Yolculuk</h2>
+      <p class="sec-sub" data-i18n="journey.sub">Deneyim ve eğitim — nereden başladım, şu an neredeyim.</p>
+    </header>
+
+    <ol class="timeline">
+      <li class="tl reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-date" data-i18n="tl1.date">Ocak 2026</div>
+        <div class="tl-body card">
+          <h3 data-i18n="tl1.t">Bilgisayar Mühendisliği — Mezuniyet</h3>
+          <span class="tl-org">TED Üniversitesi · Ankara</span>
+          <p data-i18n="tl1.d">Dört buçuk yıllık eğitimimi tamamladım. Oyun programlama, veri yapıları, veritabanı sistemleri ve yazılım mühendisliği derslerinde uygulamalı projeler ürettim.</p>
+        </div>
+      </li>
+
+      <li class="tl reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-date" data-i18n="tl2.date">Ağustos 2025</div>
+        <div class="tl-body card">
+          <h3 data-i18n="tl2.t">Stajyer</h3>
+          <span class="tl-org">Kobizon</span>
+          <p data-i18n="tl2.d">Kurumsal bir yazılım ekibinin içinde çalışarak geliştirme süreçlerini ve profesyonel iş akışını yakından gözlemledim.</p>
+        </div>
+      </li>
+
+      <li class="tl reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-date" data-i18n="tl3.date">Haziran – Temmuz 2024</div>
+        <div class="tl-body card">
+          <h3 data-i18n="tl3.t">Stajyer</h3>
+          <span class="tl-org">İnnova</span>
+          <p data-i18n="tl3.d">Bir ekip arkadaşımla Selenium ve veritabanı kullanarak Amazon benzeri bir e-ticaret web uygulaması geliştirdim. Satıcı ve müşteri tarafları için ayrı sayfalar geliştirerek ürün satış ve satın alma akışlarını uyguladım.</p>
+        </div>
+      </li>
+
+      <li class="tl reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-date" data-i18n="tl4.date">Eylül 2021</div>
+        <div class="tl-body card">
+          <h3 data-i18n="tl4.t">Bilgisayar Mühendisliğine Başlangıç</h3>
+          <span class="tl-org">TED Üniversitesi · Ankara</span>
+          <p data-i18n="tl4.d">İlk "Hello, World" satırından kendi oyununu çalıştırdığın ana kadar giden yol buradan başladı.</p>
+        </div>
+      </li>
+
+      <li class="tl reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-date" data-i18n="tl5.date">Temmuz 2019</div>
+        <div class="tl-body card">
+          <h3 data-i18n="tl5.t">Engineering Summer School</h3>
+          <span class="tl-org">Özyeğin Üniversitesi</span>
+          <p data-i18n="tl5.d">Bir aylık yoğun mühendislik programı. Mühendisliğin bir meslekten çok bir düşünme biçimi olduğunu ilk burada fark ettim.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section section-contact" id="contact">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-num">06</span>
+      <h2 data-i18n="contact.title">İletişim</h2>
+      <p class="sec-sub" data-i18n="contact.sub">Bir fikrin, bir projen ya da bir pozisyonun mu var? Yazmaktan çekinme.</p>
+    </header>
+
+    <div class="contact-grid reveal">
+      <a class="cc card" href="mailto:kutayzku@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
+        <span data-i18n="contact.mail">E-posta</span><b>kutayzku@gmail.com</b>
+      </a>
+      <a class="cc card" href="https://github.com/kutayzku" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        <span>GitHub</span><b>@kutayzku</b>
+      </a>
+      <a class="cc card" href="https://www.linkedin.com/in/kutay-aydemir-5b3b19219/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 3H3.6A.6.6 0 0 0 3 3.6v16.8a.6.6 0 0 0 .6.6h16.8a.6.6 0 0 0 .6-.6V3.6a.6.6 0 0 0-.6-.6zM8.3 18.3H5.5V9.7h2.8v8.6zM6.9 8.5a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zm11.4 9.8h-2.8V14c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.4H9.7V9.7h2.7v1.2h.04c.38-.7 1.3-1.45 2.66-1.45 2.84 0 3.37 1.87 3.37 4.3v4.55z"/></svg>
+        <span>LinkedIn</span><b>Kutay Aydemir</b>
+      </a>
+      <a class="cc card" href="https://kutayzku.itch.io/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l1.6 4.6a3 3 0 0 1-5.3 2.6 3 3 0 0 1-4.3 0 3 3 0 0 1-4.3 0A3 3 0 0 1 2.4 8.6z"/><path d="M4.5 11.4V19a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-7.6"/><path d="M9.5 20v-4.5h5V20"/></svg>
+        <span>itch.io</span><b>kutayzku.itch.io</b>
+      </a>
+      <a class="cc card cc-cv" href="assets/Kutay_Aydemir_CV.docx" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 10.5 12 15l4.5-4.5M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg>
+        <span data-i18n="contact.cv">Özgeçmiş</span><b data-i18n="contact.cvv">CV'yi indir (.docx)</b>
+      </a>
+    </div>
+
+    <div class="cta-band reveal">
+      <p data-i18n="contact.band">Bir fikir, bir proje ya da bilgisayarların nasıl çalıştığı üzerine bir sohbet — yazmaktan çekinme.</p>
+      <div class="cta-actions">
+        <a href="mailto:kutayzku@gmail.com?subject=Merhaba%20Kutay" class="btn btn-primary"><span data-i18n="contact.btn">Bana yaz</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button type="button" class="btn btn-ghost" id="copyMail" data-mail="kutayzku@gmail.com"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11.5" height="11.5" rx="2.2"/><path d="M5.5 15H4.6A1.6 1.6 0 0 1 3 13.4V4.6A1.6 1.6 0 0 1 4.6 3h8.8A1.6 1.6 0 0 1 15 4.6v.9"/></svg><span id="copyMailLabel" data-i18n="contact.copy">E-postayı kopyala</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <img src="assets/logo-dark.png" alt="" data-logo width="30" height="30">
+      <span>Kutay Aydemir</span>
+    </div>
+    <p class="foot-note" data-i18n="foot.note">Bu site sıfırdan HTML, CSS ve JavaScript ile yazıldı — çerçeve yok, sadece kod.</p>
+    <p class="foot-copy">© <span id="year">2026</span> Kutay Aydemir</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Yukarı çık"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
+<script src="js/i18n.js"></script>
+<script src="js/lab.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
